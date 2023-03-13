@@ -1,10 +1,8 @@
 package com.example.shopserviceweiterentwicklung;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,6 +31,16 @@ public class ShopController {
        Order order = shopservice.getOrder(id);
         System.out.println(order);
        return order;
+    }
+
+    @PostMapping("/orders")
+    public List<Order> getOrderById(@RequestBody int[] ids) {
+        List<Order> orders = new ArrayList<>();
+
+        for(int id : ids) {
+            orders.add(shopservice.getOrder(""+ id));
+        }
+        return orders;
     }
 
 

@@ -10,6 +10,9 @@ public class OrderRepo {
 
     public OrderRepo () {
         orders.put("1", new Order("1", List.of(new Product("1", "Apfel"), new Product("2", "Banane"))));
+        orders.put("2", new Order("2", List.of(new Product("1", "Nutella"), new Product("2", "Banane"))));
+        orders.put("3", new Order("3", List.of(new Product("1", "Brötchen"), new Product("2", "Banane"))));
+
     }
 
     public OrderRepo(Map<String, Order> orders) {
