@@ -7,22 +7,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/controller")
-public class ShopController {
+public class OrderController {
     private final ShopService shopService;
 
-    public ShopController(ShopService shopService) {
+    public OrderController(ShopService shopService) {
         this.shopService = shopService;
     }
 
-    @GetMapping("/products")
-    public List<Product> getProducts() {
-        return shopService.listProducts();
-    }
-
-    @GetMapping("/product/{id}")
-    public Product getProductById(@PathVariable String id) {
-        return shopService.getProduct(id);
-    }
 
     @GetMapping("/orders")
     public List<Order> getOrders(){

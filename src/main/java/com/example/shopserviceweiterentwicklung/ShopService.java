@@ -5,15 +5,17 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.UUID;
+
 @Service
 public class ShopService {
     private final ProductRepo productRepo;
     private final OrderRepo orderRepo;
+    private final IdService idService;
 
-    public ShopService(ProductRepo productRepo, OrderRepo orderRepo) {
+    public ShopService(ProductRepo productRepo, OrderRepo orderRepo, IdService idService) {
         this.productRepo = productRepo;
         this.orderRepo = orderRepo;
+        this.idService = idService;
     }
 
     public List<Product> listProducts() {
@@ -45,7 +47,7 @@ public class ShopService {
            }
            allProducts.add(product);
        }
-       Order order = new Order(UUID.randomUUID().toString(), allProducts);
+       Order order = new Order(idService.generateId(), allProducts);
        orderRepo.add(order);
 
         return order;
