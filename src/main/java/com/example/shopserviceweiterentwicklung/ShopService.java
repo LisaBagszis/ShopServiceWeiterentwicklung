@@ -1,18 +1,19 @@
 package com.example.shopserviceweiterentwicklung;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
-
-
+@Service
 public class ShopService {
-    private ProductRepo productRepo;
-    private OrderRepo orderRepo = new OrderRepo();
+    private final ProductRepo productRepo;
+    private final OrderRepo orderRepo;
 
-    public ShopService () {
-        productRepo = new ProductRepo();
-        //orderRepo = new OrderRepo();
+    public ShopService(ProductRepo productRepo, OrderRepo orderRepo) {
+        this.productRepo = productRepo;
+        this.orderRepo = orderRepo;
     }
 
     public List<Product> listProducts() {

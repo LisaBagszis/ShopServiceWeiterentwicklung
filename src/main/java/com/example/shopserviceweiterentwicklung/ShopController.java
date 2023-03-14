@@ -8,27 +8,30 @@ import java.util.List;
 @RestController
 @RequestMapping("/controller")
 public class ShopController {
+    private final ShopService shopService;
 
-    ShopService shopservice = new ShopService();
+    public ShopController(ShopService shopService) {
+        this.shopService = shopService;
+    }
 
     @GetMapping("/products")
     public List<Product> getProducts() {
-        return shopservice.listProducts();
+        return shopService.listProducts();
     }
 
     @GetMapping("/product/{id}")
     public Product getProductById(@PathVariable String id) {
-        return shopservice.getProduct(id);
+        return shopService.getProduct(id);
     }
 
     @GetMapping("/orders")
     public List<Order> getOrders(){
-        return shopservice.listOrders();
+        return shopService.listOrders();
     }
 
     @GetMapping("/order/{id}")
     public Order getOrderById(@PathVariable String id) {
-       Order order = shopservice.getOrder(id);
+       Order order = shopService.getOrder(id);
         System.out.println(order);
        return order;
     }
@@ -38,7 +41,7 @@ public class ShopController {
         List<Order> orders = new ArrayList<>();
 
         for(int id : ids) {
-            orders.add(shopservice.getOrder(""+ id));
+            orders.add(shopService.getOrder(""+ id));
         }
         return orders;
     }

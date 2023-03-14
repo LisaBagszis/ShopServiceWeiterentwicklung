@@ -1,12 +1,14 @@
 package com.example.shopserviceweiterentwicklung;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
 
-
+@Repository
 public class ProductRepo {
 
     protected HashMap<String, Product> products;
