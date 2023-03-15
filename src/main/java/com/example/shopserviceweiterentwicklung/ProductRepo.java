@@ -1,5 +1,7 @@
 package com.example.shopserviceweiterentwicklung;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.Objects;
 
 
 @Repository
+
 public class ProductRepo {
 
     protected HashMap<String, Product> products;

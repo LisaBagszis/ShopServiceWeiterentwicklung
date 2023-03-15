@@ -1,5 +1,7 @@
 package com.example.shopserviceweiterentwicklung;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
+
 public class ShopService {
     private final ProductRepo productRepo;
     private final OrderRepo orderRepo;
