@@ -2,24 +2,22 @@ package com.example.shopserviceweiterentwicklung;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
+@RequiredArgsConstructor //Konstruktor mit allen final Werten. AllArgsConstructor ohne final Werte.
 
 public class ShopService {
     private final ProductRepo productRepo;
     private final OrderRepo orderRepo;
     private final IdService idService;
 
-    public ShopService(ProductRepo productRepo, OrderRepo orderRepo, IdService idService) {
-        this.productRepo = productRepo;
-        this.orderRepo = orderRepo;
-        this.idService = idService;
-    }
 
     public List<Product> listProducts() {
         return productRepo.list();
@@ -36,7 +34,11 @@ public class ShopService {
     }
 
     public Order getOrder(String id) {
-        return orderRepo.get(id);
+        Order order = orderRepo.get(id);
+        if (order == null) {
+            throw new NoSuchElementException("Order with id " + id + " not found");
+        }
+        return order;
     }
 
     public Order addOrder(List<String> productIds) {
@@ -55,4 +57,13 @@ public class ShopService {
 
         return order;
     }
+
+    public Order putOrder(String id, Order order) {
+        return orderRepo.putOrder(id, order);
+    }
+
+    public void deleteOrder(String id) {
+        orderRepo.deleteOrder(id);
+    }
+
 }

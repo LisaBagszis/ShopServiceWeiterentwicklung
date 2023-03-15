@@ -11,9 +11,9 @@ public class OrderRepo {
     private Map<String, Order> orders = new HashMap<>();
 
     public OrderRepo () {
-        orders.put("1", new Order("1", List.of(new Product("1", "Apfel"), new Product("2", "Banane"))));
-        orders.put("2", new Order("2", List.of(new Product("1", "Nutella"), new Product("2", "Banane"))));
-        orders.put("3", new Order("3", List.of(new Product("1", "Brötchen"), new Product("2", "Banane"))));
+          orders.put("1", new Order("1", List.of(new Product("1", "Apfel"), new Product("2", "Banane"))));
+//        orders.put("2", new Order("2", List.of(new Product("1", "Nutella"), new Product("2", "Banane"))));
+//        orders.put("3", new Order("3", List.of(new Product("1", "Brötchen"), new Product("2", "Banane"))));
 
     }
 
@@ -33,5 +33,12 @@ public class OrderRepo {
         orders.put(order.getId(), order);
         return order;
 
+    }
+    public void deleteOrder(String id) {
+        orders.remove(id);
+    }
+
+    public Order putOrder (String id, Order order) {
+        return orders.put(id, order);
     }
 }
