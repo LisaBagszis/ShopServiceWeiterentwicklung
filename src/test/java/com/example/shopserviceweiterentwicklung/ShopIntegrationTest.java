@@ -13,9 +13,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.post;
 import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -31,6 +33,8 @@ class ShopIntegrationTest {
     ProductRepo productRepo;
     @Autowired
     OrderRepo orderRepo;
+    @Autowired
+    ShopService shopService;
 
     @Test
     void getOrders_shouldReturnListOfOrders() throws Exception {
@@ -95,13 +99,21 @@ class ShopIntegrationTest {
                                         """));
     }
 
-    @Test
-    void testGetOrderById() {
-    }
 
     @Test
-    void deleteOrder() {
+    void deleteOrder_shouldReturnNoContent() throws Exception {
+
+        String orderId = "1";
+        doNothing().when(shopService).deleteOrder(orderId);
+
+
+        mockMvc.perform(delete("/orders/{id}", orderId))
+
+
+                .andExpect(status().isNoContent())
+                .andExpect(content().string(""));
     }
+
 
     @Test
     @DirtiesContext
