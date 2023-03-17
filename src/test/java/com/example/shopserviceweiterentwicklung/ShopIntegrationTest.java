@@ -121,7 +121,7 @@ class ShopIntegrationTest {
 
         mockMvc.perform(
 
-                        MockMvcRequestBuilders.put("/put/1")
+                                .put("/put/1")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content(
                                         """
